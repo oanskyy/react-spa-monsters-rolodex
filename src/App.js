@@ -26,11 +26,25 @@ class App extends Component {
 			)
 	}
 
+	// Optimization: not initialize unnecessary anonymous functions whenever the re-render calls. only gets called once when our class component initializes
+	onSeachChange = event => {
+		const searchField = event.target.value.toLowerCase()
+
+		this.setState(() => {
+			return { searchField }
+		})
+		console.log("event", event.target.value)
+	}
+
 	render() {
 		console.log("render")
 
-		const filteredMonsters = this.state.monsters.filter(monster => {
-			return monster.name.toLowerCase().includes(this.state.searchField)
+		// Optimization: destructuring
+		const { monsters, searchField } = this.state
+		const { onSeachChange } = this
+
+		const filteredMonsters = monsters.filter(monster => {
+			return monster.name.toLowerCase().includes(searchField)
 		})
 
 		return (
@@ -39,14 +53,7 @@ class App extends Component {
 					className='search-box'
 					type='search'
 					placeholder='search monster'
-					onChange={event => {
-						const searchField = event.target.value.toLowerCase()
-
-						this.setState(() => {
-							return { searchField }
-						})
-						console.log("event", event.target.value)
-					}}
+					onChange={onSeachChange}
 				/>
 				{filteredMonsters.map(monster => {
 					return (
