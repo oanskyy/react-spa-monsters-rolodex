@@ -1,5 +1,6 @@
 import "./App.css"
 import { Component } from "react"
+import CardList from "./components/card-list/card-list.component"
 
 class App extends Component {
 	constructor() {
@@ -7,11 +8,12 @@ class App extends Component {
 		this.state = {
 			monsters: []
 		}
-		console.log("constructor")
+		// console.log("1 constructor")
 	}
 
 	componentDidMount() {
-		console.log("componentDidMount")
+		// console.log("3 componentDidMount")
+
 		fetch("https://jsonplaceholder.typicode.com/users")
 			.then(response => response.json())
 			.then(users =>
@@ -20,7 +22,7 @@ class App extends Component {
 						return { monsters: users }
 					},
 					() => {
-						console.log(this.state)
+						// console.log(this.state, 'componentDidMount async')
 					}
 				)
 			)
@@ -33,11 +35,11 @@ class App extends Component {
 		this.setState(() => {
 			return { searchField }
 		})
-		console.log("event", event.target.value)
+		// console.log("event", event.target.value)
 	}
 
 	render() {
-		console.log("render")
+		// console.log("2 render")
 
 		// Optimization: destructuring
 		const { monsters, searchField } = this.state
@@ -55,13 +57,8 @@ class App extends Component {
 					placeholder='search monster'
 					onChange={onSeachChange}
 				/>
-				{filteredMonsters.map(monster => {
-					return (
-						<div key={monster.id}>
-							<h1>{monster.name}</h1>
-						</div>
-					)
-				})}
+			
+				<CardList monsters={filteredMonsters} />
 			</div>
 		)
 	}
