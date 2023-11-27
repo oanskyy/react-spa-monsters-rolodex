@@ -1,12 +1,14 @@
 import "./App.css"
 import { Component } from "react"
 import CardList from "./components/card-list/card-list.component"
+import SearchBox from "./components/search-bar/search-bar.component"
 
 class App extends Component {
 	constructor() {
 		super()
 		this.state = {
-			monsters: []
+			monsters: [],
+			searchField: ""
 		}
 		// console.log("1 constructor")
 	}
@@ -51,13 +53,11 @@ class App extends Component {
 
 		return (
 			<div className='App'>
-				<input
+				<SearchBox
 					className='search-box'
-					type='search'
-					placeholder='search monster'
-					onChange={onSeachChange}
+					onChangeHandler={onSeachChange}
+					placeholder='search monsters'
 				/>
-			
 				<CardList monsters={filteredMonsters} />
 			</div>
 		)
