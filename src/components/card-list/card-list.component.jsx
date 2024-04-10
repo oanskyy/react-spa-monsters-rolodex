@@ -1,4 +1,4 @@
-import Card from "../card.component.jsx/card.component"
+import Card from "../card/card.component.tsx"
 import "./card-list.styles.css"
 
 const CardList = ({ monsters }) => {
