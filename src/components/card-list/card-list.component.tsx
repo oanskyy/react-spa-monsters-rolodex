@@ -1,6 +1,6 @@
-import { Monster } from "../../App.js"
+import { Monster } from "../../App"
 
-import Card from "../card/card.component.js"
+import Card from "../card/card.component"
 import "./card-list.styles.css"
 
 type CardListProps = {
