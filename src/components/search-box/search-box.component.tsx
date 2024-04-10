@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler } from "react"
+import { ChangeEvent } from "react"
 import "./search-box.styles.css"
 
 // interface ISearchBoxProps {
@@ -7,14 +7,9 @@ import "./search-box.styles.css"
 // 	onChangeHandler: ()
 // }
 
-type ISearchBoxProps = {
+type SearchBoxProps = {
 	className: string
 	placeholder: string
-	// 3rd party library types that we can inherit. type paramaters that we can pass known as generics
-	// function definition
-	// onChangeHandler: ChangeEventHandler<HTMLInputElement>
-	// more precise, event def, instead of function def
-	// func: ChangeEventHandler; this is the same as below just typed more manually. 
 	onChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -22,7 +17,7 @@ const SearchBox = ({
 	className,
 	placeholder,
 	onChangeHandler
-}: ISearchBoxProps) => (
+}: SearchBoxProps) => (
 	<input
 		className={`search-box ${className}`}
 		type='search'
@@ -32,3 +27,10 @@ const SearchBox = ({
 )
 
 export default SearchBox
+
+// NOTE
+// 3rd party library types that we can inherit. type paramaters that we can pass known as generics
+// function definition
+// onChangeHandler: ChangeEventHandler<HTMLInputElement>
+// more precise, event def, instead of function def
+// func: ChangeEventHandler; this is the same as below just typed more manually.

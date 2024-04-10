@@ -1,7 +1,13 @@
-import Card from "../card/card.component.tsx"
+import { Monster } from "../../App.js"
+
+import Card from "../card/card.component.js"
 import "./card-list.styles.css"
 
-const CardList = ({ monsters }) => {
+type CardListProps = {
+	monsters: Monster[]
+}
+
+const CardList = ({ monsters }: CardListProps) => {
 	console.log("2.2 render from cardList")
 
 	return (
